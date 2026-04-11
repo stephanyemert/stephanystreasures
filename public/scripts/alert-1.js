@@ -5,7 +5,7 @@ var pureAlert1Icon = 'bi-hammer'; // Icon
 var pureAlert1Desc = "As we continue to enhance this site, it will be temporarily unavailable for maintenance between 12 AM to 2 AM CDT on Saturday (4/11/2026) as we work to improve your experience. Thank you for your patience, and we apologize for any inconvenience caused."; // Description
 var pureAlert1Link = ""; // Link URL (leave empty for no link)
 var pureAlert1LinkDesc = ""; // Link Description
-var pureAlert1Enabled = true; // Switch to enable/disable alert
+var pureAlert1Enabled = false; // Switch to enable/disable alert
 // ---        --- //
 
 function setAlert1Cookie(name, value, days) {
