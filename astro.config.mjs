@@ -5,15 +5,13 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
-  experimental: {
-    fonts: [
-      {
-        provider: fontProviders.google(),
-        name: "Imperial Script",
-        cssVariable: "--font-title"
-      }
-    ],
-  },
+  fonts: [
+    {
+      provider: fontProviders.google(),
+      name: "Imperial Script",
+      cssVariable: "--font-title"
+    }
+  ],
 
   output: "server",
   adapter: netlify(),
