@@ -5,6 +5,13 @@ import netlify from "@astrojs/netlify";
 
 // https://astro.build/config
 export default defineConfig({
+  vite: {
+    resolve: {
+      alias: {
+        jquery: '/node_modules/jquery'
+      }
+    }
+  },
   fonts: [
     {
       provider: fontProviders.google(),
