@@ -1,5 +1,10 @@
 ---
 const { product } = Astro.props;
+
+import { isProductSoldOut } from '../lib/soldOut';
+
+const liveSoldOut = await isProductSoldOut(product.id);
+const isSoldOut = product.soldOut || liveSoldOut;
 ---
 
 <div class="card h-100 shadow-sm position-relative card-hover">
@@ -15,7 +20,7 @@ const { product } = Astro.props;
       />
 
       <!-- Sold Out Badge -->
-      {product.soldOut && (
+      {isSoldOut && (
         <span 
           class="badge bg-danger position-absolute"
           style="bottom: 8px; right: 8px;"

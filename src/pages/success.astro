@@ -1,5 +1,33 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Stripe from 'stripe';
+import { markSoldOut } from '../lib/soldOut';
+
+const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
+
+const sessionId = Astro.url.searchParams.get('session_id');
+let error = false;
+
+if (sessionId) {
+  try {
+    const session = await stripe.checkout.sessions.retrieve(sessionId);
+
+    // Only mark sold out if payment actually completed
+    if (session.payment_status === 'paid') {
+      const productIds = session.metadata?.product_ids;
+      if (productIds) {
+        const ids = productIds.split(',').map((id: string) => id.trim()).filter(Boolean);
+        for (const id of ids) {
+          await markSoldOut(id);
+          console.log(`Marked sold out: ${id}`);
+        }
+      }
+    }
+  } catch (err) {
+    console.error('Failed to retrieve session:', err);
+    error = true;
+  }
+}
 ---
 
 <Layout 
@@ -34,4 +62,9 @@ import Layout from '../layouts/Layout.astro';
       </p>
     </div>
   </main>
+
+  <!-- Clear the cart on successful purchase -->
+  <script>
+    localStorage.removeItem('cart');
+  </script>
 </Layout>

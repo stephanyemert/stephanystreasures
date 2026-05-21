@@ -128,6 +128,33 @@ export function updateCartBadge() {
   }
 }
 
+async function doCheckout(items) {
+  const res = await fetch("/api/create-checkout-session", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ items })
+  });
+
+  const data = await res.json();
+
+  if (res.status === 409 && data.soldOut) {
+    alert(`Sorry — ${data.error} It has been removed from your cart.`);
+    // Remove the sold-out item(s) from cart
+    const cart = getCart().filter(item => !items.find(i => i.id === item.id && data.error.includes(item.name)));
+    // Simpler: remove all items that triggered the 409 (re-attempt will catch next one)
+    const soldOutName = data.error.replace(/" is no longer available\.$/, '').replace(/^"/, '');
+    const newCart = getCart().filter(item => item.name !== soldOutName);
+    saveCart(newCart);
+    return;
+  }
+
+  if (data.url) {
+    window.location = data.url;
+  } else {
+    alert("Checkout failed. Please try again.");
+  }
+}
+
 export async function instantCheckout(id) {
   await waitForProducts();
 
@@ -146,16 +173,7 @@ export async function instantCheckout(id) {
     );
   }
 
-  const items = [{ id, quantity: 1 }];
-
-  const res = await fetch("/api/create-checkout-session", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ items })
-  });
-
-  const data = await res.json();
-  if (data.url) window.location = data.url;
+  await doCheckout([{ id, quantity: 1 }]);
 }
 
 export function removeFromCart(id) {
@@ -256,14 +274,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const cart = getCart();
       if (cart.length === 0) return;
 
-      const res = await fetch("/api/create-checkout-session", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items: cart })
-      });
-
-      const data = await res.json();
-      if (data.url) window.location = data.url;
+      await doCheckout(cart);
     });
   }
 });
