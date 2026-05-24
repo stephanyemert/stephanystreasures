@@ -1,7 +1,5 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-
-// Load JSON product data at build/SSR time
 import products from '../../../public/data/products.json';
 import { isProductSoldOut } from '../../lib/soldOut';
 
@@ -12,9 +10,7 @@ if (!product) {
   throw new Error(`Product not found: ${id}`);
 }
 
-// Check live sold-out state (blob store overrides static JSON)
-const liveSoldOut = await isProductSoldOut(product.id);
-const isSoldOut = product.soldOut || liveSoldOut;
+const isSoldOut = product.soldOut || isProductSoldOut(product.id);
 ---
 
 <Layout
@@ -67,7 +63,6 @@ const isSoldOut = product.soldOut || liveSoldOut;
             </>
           ) : (
             <>
-              <!-- Add to Cart -->
               <button
                 class="btn btn-primary btn-lg"
                 onclick={`addToCart('${product.id}', 1)`}
@@ -75,7 +70,6 @@ const isSoldOut = product.soldOut || liveSoldOut;
                 <i class="bi bi-cart-plus me-2"></i> Add to Cart
               </button>
 
-              <!-- Instant Checkout -->
               <button
                 class="btn btn-success btn-lg"
                 onclick={`instantCheckout('${product.id}')`}
@@ -90,6 +84,5 @@ const isSoldOut = product.soldOut || liveSoldOut;
     </div>
   </div>
 
-  <!-- Load cart.js from public (browser only) -->
   <script type="module" src="/scripts/cart.js"></script>
 </Layout>

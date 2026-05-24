@@ -1,33 +1,50 @@
-import { getStore } from "@netlify/blobs";
+/**
+ * Sold-out state is stored in a Netlify environment variable: SOLD_OUT_IDS
+ * Format: comma-separated product IDs, e.g. "magnesium-spray-emert-farms,some-other-id"
+ * 
+ * To relist an item: go to Netlify → Project configuration → Environment variables
+ * → find SOLD_OUT_IDS → remove the product ID from the comma-separated list.
+ * 
+ * To mark sold out programmatically (from success page), we call the Netlify API
+ * to update the env var.
+ */
 
-const STORE_NAME = "sold-out";
-const KEY = "state";
+const SITE_ID = import.meta.env.NETLIFY_SITE_ID;
+const NETLIFY_TOKEN = import.meta.env.NETLIFY_API_TOKEN;
 
-type SoldOutState = Record<string, boolean>;
-
-async function getBlobStore() {
-  return getStore(STORE_NAME);
+function getSoldOutIds(): string[] {
+  const raw = import.meta.env.SOLD_OUT_IDS ?? "";
+  return raw.split(",").map((s: string) => s.trim()).filter(Boolean);
 }
 
-export async function getSoldOutState(): Promise<SoldOutState> {
-  try {
-    const store = await getBlobStore();
-    const raw = await store.get(KEY, { type: "text" });
-    if (!raw) return {};
-    return JSON.parse(raw) as SoldOutState;
-  } catch {
-    return {};
-  }
+export function isProductSoldOut(productId: string): boolean {
+  return getSoldOutIds().includes(productId);
 }
 
 export async function markSoldOut(productId: string): Promise<void> {
-  const store = await getBlobStore();
-  const current = await getSoldOutState();
-  current[productId] = true;
-  await store.set(KEY, JSON.stringify(current));
-}
+  const current = getSoldOutIds();
+  if (current.includes(productId)) return;
 
-export async function isProductSoldOut(productId: string): Promise<boolean> {
-  const state = await getSoldOutState();
-  return state[productId] === true;
+  const updated = [...current, productId].join(",");
+
+  // Update the env var via Netlify API
+  const res = await fetch(
+    `https://api.netlify.com/api/v1/sites/${SITE_ID}/env/SOLD_OUT_IDS`,
+    {
+      method: "PUT",
+      headers: {
+        "Authorization": `Bearer ${NETLIFY_TOKEN}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        value: updated,
+        context: "all",
+      }),
+    }
+  );
+
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Netlify API error ${res.status}: ${text}`);
+  }
 }

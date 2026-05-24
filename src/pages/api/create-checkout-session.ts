@@ -3,7 +3,7 @@ export const prerender = false;
 import type { APIRoute } from "astro";
 import Stripe from "stripe";
 import products from "../../../public/data/products.json";
-import { isProductSoldOut, markSoldOut } from "../../lib/soldOut";
+import { isProductSoldOut } from "../../lib/soldOut";
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);
 
@@ -27,8 +27,7 @@ export const POST: APIRoute = async ({ request }) => {
         );
       }
 
-      const liveSoldOut = await isProductSoldOut(product.id);
-      if (product.soldOut || liveSoldOut) {
+      if (product.soldOut || isProductSoldOut(product.id)) {
         return new Response(
           JSON.stringify({ error: `"${product.name}" is no longer available.`, soldOut: true }),
           { status: 409 }
@@ -64,7 +63,6 @@ export const POST: APIRoute = async ({ request }) => {
       metadata: {
         product_ids: purchasedIds.join(","),
       },
-      // Pass session ID back in success URL so we can verify payment server-side
       success_url: "https://stephanystreasures.com/success?session_id={CHECKOUT_SESSION_ID}",
       cancel_url: "https://stephanystreasures.com/cancel",
     });
