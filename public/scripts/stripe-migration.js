@@ -21,7 +21,7 @@ async function migrate() {
 
     const product = await stripe.products.create({
       name: p.name,
-      description: p.description,
+      description: p.description || "",
       images: imageUrl ? [imageUrl] : [],
       metadata: {
         local_id: p.id,

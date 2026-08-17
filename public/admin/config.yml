@@ -69,7 +69,7 @@ collections:
                 name: "description"
                 widget: "text"
                 required: false
-                hint: "Optional. Shown in Stripe's product catalog, not on the site itself yet."
+                hint: "Shows the product description on both the page and Stripe."
 
   - name: "settings"
     label: "Site Settings"

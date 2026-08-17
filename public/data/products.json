@@ -8,7 +8,8 @@
       "image": "/images/product7.jpg",
       "soldOut": false,
       "category": "Home Decor",
-      "quantity": 1
+      "quantity": 1,
+      "description": "A calming, fast-absorbing magnesium spray crafted in small batches by Emert Farms. Designed to ease muscle tension and support relaxation, it delivers a refreshing, residue-free mist perfect for unwinding after a long day."
     },
     {
       "id": "wire-wrapped-pineapple-stone-necklace",
@@ -18,7 +19,8 @@
       "image": "/images/product8.jpg",
       "soldOut": false,
       "category": "Jewelry",
-      "quantity": 1
+      "quantity": 1,
+      "description": "A cheerful pineapple-inspired pendant wrapped by hand with intricate wirework. The natural stone centerpiece adds warmth and charm, making this necklace a standout accessory for anyone who loves artisan jewelry with personality."
     },
     {
       "id": "limoges-heart-trinket-box",
@@ -28,7 +30,8 @@
       "image": "/images/limoges.jpg",
       "soldOut": false,
       "category": "Antiques",
-      "quantity": 1
+      "quantity": 1,
+      "description": "A timeless porcelain heart box inspired by classic Limoges craftsmanship. Ideal for storing rings, keepsakes, or sentimental treasures, it brings elegance and heirloom beauty to any vanity or display."
     },
     {
       "id": "adorable-pig-bamboo-cutting-board",
@@ -38,7 +41,8 @@
       "image": "/images/pig.webp",
       "soldOut": false,
       "category": "Kitchen Ware",
-      "quantity": 1
+      "quantity": 1,
+      "description": "A playful pig-shaped bamboo cutting board that blends durability with farmhouse charm. Naturally antimicrobial and smooth to the touch, it’s perfect for everyday prep or serving snacks with a whimsical twist."
     },
     {
       "id": "goat-design-bamboo-cutting-board",
@@ -48,7 +52,8 @@
       "image": "/images/goat.webp",
       "soldOut": false,
       "category": "Kitchen Ware",
-      "quantity": 1
+      "quantity": 1,
+      "description": "Featuring a rustic goat silhouette, this bamboo board adds countryside character to your kitchen. Strong, eco-friendly, and versatile, it works beautifully for chopping, slicing, or presenting appetizers."
     },
     {
       "id": "highland-cow-bamboo-cutting-board",
@@ -58,7 +63,8 @@
       "image": "/images/cow.webp",
       "soldOut": false,
       "category": "Kitchen Ware",
-      "quantity": 1
+      "quantity": 1,
+      "description": "Inspired by the beloved Highland cow, this board brings cozy homestead vibes to your cooking space. Its sturdy bamboo construction offers a reliable prep surface while doubling as a charming decorative piece."
     },
     {
       "id": "mushroom-design-bamboo-cutting-board",
@@ -68,7 +74,8 @@
       "image": "/images/mushroom.webp",
       "soldOut": false,
       "category": "Kitchen Ware",
-      "quantity": 1
+      "quantity": 1,
+      "description": "A woodland-themed bamboo cutting board adorned with an enchanting mushroom design. Smooth, durable, and perfect for both food prep and serving, it’s a delightful addition to any nature-inspired kitchen."
     }
   ]
 }
