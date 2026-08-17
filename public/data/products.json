@@ -69,6 +69,17 @@
       "soldOut": false,
       "category": "Kitchen Ware",
       "quantity": 1
+    },
+    {
+      "price": 1000,
+      "quantity": 1,
+      "name": "Testing Product",
+      "soldOut": true,
+      "type": "one-time",
+      "id": "testing-product",
+      "image": "/images/placeholder.png",
+      "description": "TEST",
+      "category": "Jewelry"
     }
   ]
 }
