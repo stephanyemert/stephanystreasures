@@ -76,7 +76,6 @@ body,html {
 .hero {
   background-image: url(/images/hero.webp);
   position: relative;
-  z-index: 1000;
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
