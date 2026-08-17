@@ -97,7 +97,7 @@ const { title, icon, color, description, keywords, author, additionalContent, co
 
       <!-- Netlify Identity: needed site-wide so invite/recovery links (which point at
            the root domain) redirect into the CMS login instead of dead-ending. -->
-      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <script is:inline src="/scripts/netlify-identity-widget.js"></script>
       <script is:inline>
         if (window.netlifyIdentity) {
           window.netlifyIdentity.on("init", (user) => {
