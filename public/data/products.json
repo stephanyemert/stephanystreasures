@@ -1,72 +1,74 @@
-[
-  {
-    "id": "magnesium-spray-emert-farms",
-    "name": "Magnesium Spray-Emert Farms",
-    "price": 950,
-    "type": "one-time",
-    "image": "/images/product7.jpg",
-    "soldOut": false,
-    "category": "Home Decor",
-    "quantity": 1
-  },
-  {
-    "id": "wire-wrapped-pineapple-stone-necklace",
-    "name": "Wire Wrapped Pineapple Stone Necklace",
-    "price": 2500,
-    "type": "one-time",
-    "image": "/images/product8.jpg",
-    "soldOut": false,
-    "category": "Jewelry",
-    "quantity": 1
-  },
-  {
-    "id": "limoges-heart-trinket-box",
-    "name": "Limoges Heart Trinket Box",
-    "price": 6500,
-    "type": "one-time",
-    "image": "/images/limoges.jpg",
-    "soldOut": false,
-    "category": "Antiques",
-    "quantity": 1
-  },
-  {
-    "id": "adorable-pig-bamboo-cutting-board",
-    "name": "Adorable Pig Bamboo Cutting Board",
-    "price": 2000,
-    "type": "one-time",
-    "image": "/images/pig.webp",
-    "soldOut": false,
-    "category": "Kitchen Ware",
-    "quantity": 1
-  },
+{
+  "products": [
     {
-    "id": "goat-design-bamboo-cutting-board",
-    "name": "Goat Design Bamboo Cutting Board",
-    "price": 2000,
-    "type": "one-time",
-    "image": "/images/goat.webp",
-    "soldOut": false,
-    "category": "Kitchen Ware",
-    "quantity": 1
-  },
+      "id": "magnesium-spray-emert-farms",
+      "name": "Magnesium Spray-Emert Farms",
+      "price": 950,
+      "type": "one-time",
+      "image": "/images/product7.jpg",
+      "soldOut": false,
+      "category": "Home Decor",
+      "quantity": 1
+    },
     {
-    "id": "highland-cow-bamboo-cutting-board",
-    "name": "Highland Cow Bamboo Cutting Board",
-    "price": 2000,
-    "type": "one-time",
-    "image": "/images/cow.webp",
-    "soldOut": false,
-    "category": "Kitchen Ware",
-    "quantity": 1
-  },
-  {
-    "id": "mushroom-design-bamboo-cutting-board",
-    "name": "Mushroom Design Bamboo Cutting Board",
-    "price": 2000,
-    "type": "one-time",
-    "image": "/images/mushroom.webp",
-    "soldOut": false,
-    "category": "Kitchen Ware",
-    "quantity": 1
-  }
-]
+      "id": "wire-wrapped-pineapple-stone-necklace",
+      "name": "Wire Wrapped Pineapple Stone Necklace",
+      "price": 2500,
+      "type": "one-time",
+      "image": "/images/product8.jpg",
+      "soldOut": false,
+      "category": "Jewelry",
+      "quantity": 1
+    },
+    {
+      "id": "limoges-heart-trinket-box",
+      "name": "Limoges Heart Trinket Box",
+      "price": 6500,
+      "type": "one-time",
+      "image": "/images/limoges.jpg",
+      "soldOut": false,
+      "category": "Antiques",
+      "quantity": 1
+    },
+    {
+      "id": "adorable-pig-bamboo-cutting-board",
+      "name": "Adorable Pig Bamboo Cutting Board",
+      "price": 2000,
+      "type": "one-time",
+      "image": "/images/pig.webp",
+      "soldOut": false,
+      "category": "Kitchen Ware",
+      "quantity": 1
+    },
+    {
+      "id": "goat-design-bamboo-cutting-board",
+      "name": "Goat Design Bamboo Cutting Board",
+      "price": 2000,
+      "type": "one-time",
+      "image": "/images/goat.webp",
+      "soldOut": false,
+      "category": "Kitchen Ware",
+      "quantity": 1
+    },
+    {
+      "id": "highland-cow-bamboo-cutting-board",
+      "name": "Highland Cow Bamboo Cutting Board",
+      "price": 2000,
+      "type": "one-time",
+      "image": "/images/cow.webp",
+      "soldOut": false,
+      "category": "Kitchen Ware",
+      "quantity": 1
+    },
+    {
+      "id": "mushroom-design-bamboo-cutting-board",
+      "name": "Mushroom Design Bamboo Cutting Board",
+      "price": 2000,
+      "type": "one-time",
+      "image": "/images/mushroom.webp",
+      "soldOut": false,
+      "category": "Kitchen Ware",
+      "quantity": 1
+    }
+  ]
+}

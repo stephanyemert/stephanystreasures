@@ -2,7 +2,7 @@ export const prerender = false;
 
 import type { APIRoute } from "astro";
 import Stripe from "stripe";
-import products from "../../../public/data/products.json";
+import { products } from "../../../public/data/products.json";
 import { isProductSoldOut } from "../../lib/soldOut";
 
 const stripe = new Stripe(import.meta.env.STRIPE_SECRET_KEY);

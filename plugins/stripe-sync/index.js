@@ -41,7 +41,7 @@ export default {
 
     let products;
     try {
-      products = JSON.parse(fs.readFileSync(productsPath, "utf8"));
+      products = JSON.parse(fs.readFileSync(productsPath, "utf8")).products;
     } catch (err) {
       return utils.build.failPlugin(
         "[stripe-sync] Could not read or parse public/data/products.json",

@@ -5,7 +5,7 @@ import fs from "fs";
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY);
 const BASE_URL = "https://stephanystreasures.com";
 
-const products = JSON.parse(
+const { products } = JSON.parse(
   fs.readFileSync("./public/data/products.json", "utf8")
 );
 

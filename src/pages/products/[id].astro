@@ -1,6 +1,6 @@
 ---
 import Layout from '../../layouts/Layout.astro';
-import products from '../../../public/data/products.json';
+import { products } from '../../../public/data/products.json';
 import { isProductSoldOut } from '../../lib/soldOut';
 
 const { id } = Astro.params;
