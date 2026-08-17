@@ -11,8 +11,9 @@
 // Requires STRIPE_SECRET_KEY to be set as a Netlify environment variable
 // (the same one used by src/pages/api/create-checkout-session.ts).
 
-const fs = require("fs");
-const path = require("path");
+import fs from "fs";
+import path from "path";
+import Stripe from "stripe";
 
 const BASE_URL = "https://stephanystreasures.com";
 
@@ -22,7 +23,7 @@ function normalizeImagePath(imagePath) {
   return `${BASE_URL}/${clean}`;
 }
 
-module.exports = {
+export default {
   onSuccess: async ({ utils }) => {
     const secretKey = process.env.STRIPE_SECRET_KEY;
 
@@ -34,7 +35,6 @@ module.exports = {
       return;
     }
 
-    const Stripe = require("stripe");
     const stripe = new Stripe(secretKey);
 
     const productsPath = path.join(process.cwd(), "public/data/products.json");
