@@ -12,11 +12,11 @@ body,html {
   padding: 0.5rem 0.5rem;
   background-color: #3c0367;
   filter: drop-shadow(2px 4px 6px #19012E);
-  z-index: 50 !important;
 }
 
 .fixed-top {
   transition: padding 0.3s ease;
+  z-index: 50 !important;
 }
 
 .fixed-top.navbar-scrolled {
@@ -77,6 +77,7 @@ body,html {
 .hero {
   background-image: url(/images/hero.webp);
   position: relative;
+
   background-size: cover !important;
   background-position: center center !important;
   background-repeat: no-repeat !important;
