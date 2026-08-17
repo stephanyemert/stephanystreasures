@@ -1,0 +1,132 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# Show a confirmation before publishing, and use simple (non-editorial-workflow)
+# publishing so a save commits directly to main and triggers a normal deploy.
+publish_mode: simple
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "products"
+    label: "Products"
+    description: "Every listing on the site. Each one is a unique, one-of-a-kind item (quantity is always 1)."
+    files:
+      - file: "public/data/products.json"
+        label: "Product Catalog"
+        name: "productCatalog"
+        fields:
+          - label: "Products"
+            name: "products"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.name}} — ${{fields.price}} {{fields.soldOut}}"
+            fields:
+              - label: "ID"
+                name: "id"
+                widget: "string"
+                hint: "Lowercase, hyphenated, unique (e.g. wire-wrapped-pineapple-necklace). This becomes the product's URL and its reference in Stripe — avoid changing it after publishing."
+              - label: "Name"
+                name: "name"
+                widget: "string"
+              - label: "Price (in cents)"
+                name: "price"
+                widget: "number"
+                value_type: "int"
+                min: 0
+                hint: "Stripe uses cents. $25.00 = 2500."
+              - label: "Type"
+                name: "type"
+                widget: "select"
+                options: ["one-time", "donation"]
+                default: "one-time"
+              - label: "Image"
+                name: "image"
+                widget: "image"
+                required: false
+                choose_url: false
+              - label: "Sold Out"
+                name: "soldOut"
+                widget: "boolean"
+                default: false
+                hint: "Marking this hides the item from purchase and shows a Sold Out badge after the next deploy. Note: a completed Stripe checkout can also mark an item sold out immediately, ahead of the next deploy — this box will catch up once the site rebuilds."
+              - label: "Category"
+                name: "category"
+                widget: "select"
+                options: ["Home Decor", "Jewelry", "Antiques", "Kitchen Ware"]
+              - label: "Quantity"
+                name: "quantity"
+                widget: "number"
+                value_type: "int"
+                default: 1
+                min: 0
+                max: 1
+                hint: "Always 1 — every listing is a single unique item."
+              - label: "Description"
+                name: "description"
+                widget: "text"
+                required: false
+                hint: "Optional. Shown in Stripe's product catalog, not on the site itself yet."
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - file: "public/data/site-settings.json"
+        label: "General Settings"
+        name: "generalSettings"
+        fields:
+          - label: "Contact"
+            name: "contact"
+            widget: "object"
+            fields:
+              - label: "Contact Email"
+                name: "email"
+                widget: "string"
+                pattern: ['^[^@\s]+@[^@\s]+\.[^@\s]+$', "Must be a valid email address"]
+
+          - label: "Announcement Banner"
+            name: "banner"
+            widget: "object"
+            fields:
+              - label: "Show Banner"
+                name: "enabled"
+                widget: "boolean"
+                default: false
+                hint: "Only appears on the home page."
+              - label: "Style"
+                name: "type"
+                widget: "select"
+                options:
+                  - { label: "Dark", value: "alert-dark" }
+                  - { label: "Primary", value: "alert-primary" }
+                  - { label: "Secondary", value: "alert-secondary" }
+                  - { label: "Success", value: "alert-success" }
+                  - { label: "Danger", value: "alert-danger" }
+                  - { label: "Warning", value: "alert-warning" }
+                  - { label: "Info", value: "alert-info" }
+                  - { label: "Light", value: "alert-light" }
+                default: "alert-dark"
+              - label: "Icon"
+                name: "icon"
+                widget: "string"
+                default: "bi-megaphone-fill"
+                hint: "A Bootstrap Icons class name, e.g. bi-hammer, bi-megaphone-fill, bi-truck. Browse options at icons.getbootstrap.com"
+                required: false
+              - label: "Title"
+                name: "title"
+                widget: "string"
+                required: false
+              - label: "Description"
+                name: "description"
+                widget: "text"
+              - label: "Link URL"
+                name: "linkUrl"
+                widget: "string"
+                required: false
+              - label: "Link Text"
+                name: "linkText"
+                widget: "string"
+                required: false

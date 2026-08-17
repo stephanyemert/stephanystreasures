@@ -13,6 +13,8 @@ import { Font } from 'astro:assets';
 import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 
+import siteSettings from '../../public/data/site-settings.json';
+
 const { title, icon, color, description, keywords, author, additionalContent, contact } = Astro.props;
 ---
 
@@ -83,6 +85,7 @@ const { title, icon, color, description, keywords, author, additionalContent, co
       <script src={jquery}></script>
       <script src={jqueryui}></script>
 
+      <script is:inline set:html={`window.__SITE_ALERT__ = ${JSON.stringify(siteSettings.banner)};`}></script>
       <script src="/scripts/alert-1.js" is:inline></script>
 
       {contact && (
@@ -91,6 +94,21 @@ const { title, icon, color, description, keywords, author, additionalContent, co
 
       <script src="/scripts/enabler.js" is:inline></script>
       <script is:inline src="/scripts/cart.js" type="module"></script>
+
+      <!-- Netlify Identity: needed site-wide so invite/recovery links (which point at
+           the root domain) redirect into the CMS login instead of dead-ending. -->
+      <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+      <script is:inline>
+        if (window.netlifyIdentity) {
+          window.netlifyIdentity.on("init", (user) => {
+            if (!user) {
+              window.netlifyIdentity.on("login", () => {
+                document.location.href = "/admin/";
+              });
+            }
+          });
+        }
+      </script>
     </Fragment>
   </body>
 </html>

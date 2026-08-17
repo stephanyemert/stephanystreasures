@@ -1,11 +1,15 @@
 // --- Config --- //
-var pureAlert1Type = "alert-dark"; // Color
-var pureAlert1Title = "MAINTENANCE MODE:"; // Title
-var pureAlert1Icon = 'bi-hammer'; // Icon
-var pureAlert1Desc = "As we continue to enhance this site, it will be temporarily unavailable for maintenance between 12 AM to 2 AM CDT on Saturday (4/11/2026) as we work to improve your experience. Thank you for your patience, and we apologize for any inconvenience caused."; // Description
-var pureAlert1Link = ""; // Link URL (leave empty for no link)
-var pureAlert1LinkDesc = ""; // Link Description
-var pureAlert1Enabled = false; // Switch to enable/disable alert
+// Values come from public/data/site-settings.json (editable in the CMS at /admin),
+// injected as window.__SITE_ALERT__ by Layout.astro. The literals below are only a
+// fallback in case that injection is ever missing.
+var siteAlertConfig = window.__SITE_ALERT__ || {};
+var pureAlert1Type = siteAlertConfig.type || "alert-dark"; // Color
+var pureAlert1Title = siteAlertConfig.title || ""; // Title
+var pureAlert1Icon = siteAlertConfig.icon || "bi-megaphone-fill"; // Icon
+var pureAlert1Desc = siteAlertConfig.description || ""; // Description
+var pureAlert1Link = siteAlertConfig.linkUrl || ""; // Link URL (leave empty for no link)
+var pureAlert1LinkDesc = siteAlertConfig.linkText || ""; // Link Description
+var pureAlert1Enabled = Boolean(siteAlertConfig.enabled); // Switch to enable/disable alert
 // ---        --- //
 
 function setAlert1Cookie(name, value, days) {

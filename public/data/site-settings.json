@@ -1,0 +1,14 @@
+{
+  "contact": {
+    "email": "stephany@stephanystreasures.com"
+  },
+  "banner": {
+    "enabled": false,
+    "type": "alert-dark",
+    "title": "MAINTENANCE MODE:",
+    "icon": "bi-hammer",
+    "description": "As we continue to enhance this site, it will be temporarily unavailable for maintenance between 12 AM to 2 AM CDT on Saturday (4/11/2026) as we work to improve your experience. Thank you for your patience, and we apologize for any inconvenience caused.",
+    "linkUrl": "",
+    "linkText": ""
+  }
+}

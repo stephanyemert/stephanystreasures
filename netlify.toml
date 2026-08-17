@@ -12,8 +12,14 @@
     X-XSS-Protection = "1"
     X-Content-Type-Options = "nosniff"
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-    Content-Security-Policy = "default-src 'none'; connect-src 'self'; frame-src 'self' https://app.netlify.com/ https://codepen.io; form-action 'self'; base-uri 'self'; manifest-src 'self'; font-src 'self' data: https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'self'; script-src 'unsafe-inline' 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net; style-src 'unsafe-hashes' 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'self'"
+    Content-Security-Policy = "default-src 'none'; connect-src 'self' https://identity.netlify.com; frame-src 'self' https://app.netlify.com/ https://codepen.io; form-action 'self'; base-uri 'self'; manifest-src 'self'; font-src 'self' data: https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com; object-src 'self'; script-src 'unsafe-inline' 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://identity.netlify.com; style-src 'unsafe-hashes' 'self' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://fonts.googleapis.com 'unsafe-inline'; img-src 'self' data:; frame-ancestors 'self'"
     Permissions-Policy = "fullscreen=(self), geolocation=(), camera=(), browsing-topics=(), picture-in-picture=(self), payment=(), autoplay=(self), encrypted-media=(self), interest-cohort=()"
     Referrer-Policy = "strict-origin"
     Access-Control-Allow-Origin = "*"
     X-UA-Compatible = "IE=edge"
+
+# Mirrors public/data/products.json into Stripe's Product catalog after every
+# successful deploy — so editing a product in the CMS (which commits to git and
+# triggers this deploy) keeps Stripe's catalog in sync automatically.
+[[plugins]]
+  package = "./plugins/stripe-sync"
