@@ -81,9 +81,9 @@ const { title, icon, color, description, keywords, author, additionalContent, co
       </div>
     </Fragment>
     <Fragment>
-      <script src={bootstrap}></script>
-      <script src={jquery}></script>
-      <script src={jqueryui}></script>
+      <script is:inline src={bootstrap}></script>
+      <script is:inline src={jquery}></script>
+      <script is:inline src={jqueryui}></script>
 
       <script is:inline set:html={`window.__SITE_ALERT__ = ${JSON.stringify(siteSettings.banner)};`}></script>
       <script src="/scripts/alert-1.js" is:inline></script>
